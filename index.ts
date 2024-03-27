@@ -1,17 +1,8 @@
-import express, { Application, Request, Response } from 'express';
-import routes from './src/routes/routes';
+import dotEnv from 'dotenv';
+import Server from "./src/server/server";
 
-const app: Application = express();
-const port = 3000;
+dotEnv.config();
 
-app.use(express.json());
-app.use('/api', routes);
+const server = new Server();
 
-
-app.get('/test', (_req: Request, res: Response) => {
-  res.send('Welcome to Express & TypeScript Server' + Date.now().toLocaleString());
-});
-
-app.listen(port, () => {
-  console.log(`Server is Fire at http://localhost:${port}`);
-});
+server.listen();
