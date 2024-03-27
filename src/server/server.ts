@@ -1,8 +1,9 @@
 import cors from 'cors';
 import express, { Application } from 'express';
-// import '../models/operations.js';
-// import '../models/reason.js';
+import '../models/association';
+import '../models/ubication.models';
 import '../models/user.models';
+import ubicationRouter from '../routes/ubication.router';
 import userRouter from '../routes/users.router.js';
 
 import { db } from '../db/connection';
@@ -12,10 +13,8 @@ class Server {
   private app: Application;
   private port: string;
   private apiPath = {
-    operation: '/api/operation',
+    ubication: '/api/ubication',
     user: '/api/user',
-    login: '/api/login',
-    reason: '/api/reason',
   };
 
   constructor() {
@@ -37,15 +36,17 @@ class Server {
 
   routes() {
     this.app.use(this.apiPath.user, userRouter);
-    // this.app.use(this.apiPath.login, loginRouter);
-    // this.app.use(this.apiPath.operation, operationRouter);
-    // this.app.use(this.apiPath.reason, reasonRouter);
+    this.app.use(this.apiPath.ubication, ubicationRouter);
   }
 
   async dbConection() {
     try {
-      await db.sync();
+      // await db.sync({ force: true });
+      await db.sync({ alter: true });
+      // await db.sync();
       await db.authenticate();
+      console.log('Connected to DB');
+
     } catch (error: any) {
       throw new Error(error);
     }

@@ -1,5 +1,6 @@
 import bcryptjs from 'bcryptjs';
 import { Request, Response } from "express";
+import Ubication from '../models/ubication.models';
 import User from "../models/user.models";
 
 export const testUser = async (_req: Request, res: Response) => {
@@ -77,6 +78,7 @@ export const patchUser = async (req: Request, res: Response) => {
 
 export const createUser = async (req: Request, res: Response) => {
   const { body } = req;
+  const { city } = body;
   try {
     // Build new user
     const user = await User.build(body);
@@ -86,6 +88,12 @@ export const createUser = async (req: Request, res: Response) => {
     const userPassword = user.getDataValue('password');
     const userPasswordEncrypted = bcryptjs.hashSync(userPassword, salt);
     user.setDataValue('password', userPasswordEncrypted);
+
+    // Save the ubication ID
+    const ubication = await Ubication.findOne({ where: { city } });
+    if (ubication) user.setDataValue('ubicationId', ubication.dataValues.id);
+    else throw new Error(`Ubication with name ${body.city} not exist.`);
+
 
     // Save the new user
     await user.save();

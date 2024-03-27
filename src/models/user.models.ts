@@ -10,23 +10,20 @@ const User = db.define('users', {
   },
   rol: {
     type: DataTypes.STRING,
-    unique: true,
     allowNull: false
   },
   name: {
     type: DataTypes.STRING,
-    unique: true,
     allowNull: false
   },
   last_name: {
     type: DataTypes.STRING,
-    unique: true,
     allowNull: false
   },
   email: {
     type: DataTypes.STRING,
+    allowNull: false,
     unique: true,
-    allowNull: false
   },
   password: {
     type: DataTypes.STRING,
@@ -34,16 +31,24 @@ const User = db.define('users', {
   },
   avatar_img: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true
   },
   identity_img: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true
   },
   calification: {
     type: DataTypes.DECIMAL,
     allowNull: false
   },
+  aproved: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  },
+  ubicationId: {
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
+  }
 });
 
 User.prototype.toJSON = function () {
