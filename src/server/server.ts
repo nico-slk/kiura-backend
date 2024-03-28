@@ -1,12 +1,16 @@
 import cors from 'cors';
 import express, { Application } from 'express';
+import swaggerUi from 'swagger-ui-express';
+;
+
+import { db } from '../db/connection';
 import '../models/association';
 import '../models/ubication.models';
 import '../models/user.models';
+import authRoute from '../routes/auth.router';
 import ubicationRouter from '../routes/ubication.router';
 import userRouter from '../routes/users.router.js';
-
-import { db } from '../db/connection';
+import swaggerJSON from '../swagger/swagger.json';
 
 class Server {
 
@@ -15,6 +19,8 @@ class Server {
   private apiPath = {
     ubication: '/api/ubication',
     user: '/api/user',
+    doc: '/api/doc',
+    login: '/api/login',
   };
 
   constructor() {
@@ -31,12 +37,13 @@ class Server {
     this.app.use(express.json());
 
     this.app.use(express.static('public'));
-
   }
 
   routes() {
+    this.app.use(this.apiPath.login, authRoute);
     this.app.use(this.apiPath.user, userRouter);
     this.app.use(this.apiPath.ubication, ubicationRouter);
+    this.app.use(this.apiPath.doc, swaggerUi.serve, swaggerUi.setup(swaggerJSON));
   }
 
   async dbConection() {

@@ -1,3 +1,6 @@
+import dotEnv from 'dotenv';
+
+dotEnv.config();
 
 export const config = {
   ENV: process.env.ENV,
@@ -7,4 +10,5 @@ export const config = {
   DB_HOST: process.env.DB_HOST,
   DB_NAME: process.env.DB_NAME,
   DB_PORT: process.env.DB_PORT,
+  JWT: process.env.JWT_KEY
 };

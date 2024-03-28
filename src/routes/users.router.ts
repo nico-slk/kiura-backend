@@ -9,12 +9,12 @@ import {
   patchUser,
   testUser
 } from '../controllers/user.controller';
-// import { validateJwt } from '../middlewares/validate-jwt';
 import { emailExist, isUserExistByPk, validator } from '../middlewares/validator';
+import { validateJwt } from '../middlewares/validator-jsw';
 
 const router = Router();
 
-router.get('/test', testUser);
+router.put('/test', testUser);
 
 router.get('/', getUser);
 
@@ -40,7 +40,7 @@ router.post('/', [
 ], createUser);
 
 router.patch('/:id', [
-  // validateJwt,
+  validateJwt,
   check('email', 'Email should not be empty').not().isEmpty(),
   check('email', 'Email format is not valid').isEmail(),
   check('userName', 'User name should not be empty').not().isEmpty(),
@@ -52,10 +52,12 @@ router.patch('/:id', [
   validator
 ], patchUser);
 
-router.put('/:id', patchUser);
+router.put('/:targetId/:loggedId', [
+  validateJwt,
+], patchUser);
 
 router.delete('/:id', [
-  // validateJwt,
+  validateJwt,
   check('id', 'Is not a valid ID').isUUID(),
   check('id').custom(isUserExistByPk),
   validator

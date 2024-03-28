@@ -10,7 +10,8 @@ const User = db.define('users', {
   },
   rol: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    defaultValue: 'NORMAL'
   },
   name: {
     type: DataTypes.STRING,
@@ -38,7 +39,7 @@ const User = db.define('users', {
     allowNull: true
   },
   calification: {
-    type: DataTypes.DECIMAL,
+    type: DataTypes.DOUBLE,
     allowNull: false
   },
   aproved: {

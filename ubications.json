@@ -1,0 +1,20 @@
+[
+  {
+    "id": "3507118e-7f85-4eab-8b89-a1f755ef45e0",
+    "city": "La Plata",
+    "region": "Buenos Aires",
+    "country": "Argentina",
+    "createdAt": "2024-03-27T09:15:57.000Z",
+    "updatedAt": "2024-03-27T09:15:57.000Z",
+    "userId": null
+  },
+  {
+    "id": "7a5198b0-6203-460a-a2c7-46c8957e73d8",
+    "city": "Villa Gesell",
+    "region": "Buenos Aires",
+    "country": "Argentina",
+    "createdAt": "2024-03-27T09:16:46.000Z",
+    "updatedAt": "2024-03-27T09:16:46.000Z",
+    "userId": null
+  }
+]

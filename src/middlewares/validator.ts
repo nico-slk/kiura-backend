@@ -5,7 +5,9 @@ import Ubication from '../models/ubication.models';
 import User from '../models/user.models';
 
 export const validator = (req: Request, res: Response, next: NextFunction): any => {
+
   const errors = validationResult(req);
+
   if (!errors.isEmpty()) {
     return res.status(400).json(errors);
   }
@@ -39,7 +41,7 @@ export const isUbicationExistByPk = async (id: UUIDVersion) => {
 };
 
 export const isUbicationExistByName = async (city: string) => {
-  const ubication = await Ubication.findOne({ where: { city: city } });
+  const ubication = await Ubication.findOne({ where: { city } });
 
   if (ubication) {
     throw new Error(`The ubication with name: ${city} already exist`);

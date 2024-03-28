@@ -52,8 +52,9 @@ export const getUserByPk = async (req: Request, res: Response) => {
 };
 
 export const patchUser = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { targetId, loggedId } = req.params;
   const { id: userId, ...body } = req.body;
+
   try {
     // Encrypt the password
     if (body.password) {
@@ -61,9 +62,19 @@ export const patchUser = async (req: Request, res: Response) => {
       body.password = bcryptjs.hashSync(body.password, salt);
     }
 
+    // Check if logged user is ADMIN role
+    const logguedUser = await User.findOne({ where: { id: loggedId } });
+    const { rol, name } = logguedUser?.dataValues;
+
+    if (rol !== 'ADMIN' && targetId !== loggedId) {
+      res.json({
+        msg: `The user with name: ${name} have not the require authorization`,
+      });
+    }
+
     // Update and get the updated ser
-    await User.update(body, { where: { id } });
-    const user = await User.findByPk(id);
+    await User.update(body, { where: { id: targetId } });
+    const user = await User.findByPk(targetId);
 
     // Response
     res.json({

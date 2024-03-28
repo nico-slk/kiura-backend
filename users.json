@@ -1,0 +1,72 @@
+[
+  {
+    "id": "017d485f-08f3-4d16-8877-fe708c0ebeb5",
+    "rol": "ADMIN",
+    "name": "Nicolas",
+    "last_name": "Selicki",
+    "email": "nicsel@gmail.com",
+    "avatar_img": "https://i.ibb.co/qW5Q4Lj/15.webp",
+    "identity_img": "https://i.ibb.co/17zs5XY/14.webp",
+    "calification": 2,
+    "aproved": true,
+    "ubicationId": "7a5198b0-6203-460a-a2c7-46c8957e73d8",
+    "createdAt": "2024-03-27T09:17:15.000Z",
+    "updatedAt": "2024-03-27T09:17:15.000Z"
+  },
+  {
+    "id": "1c51d47f-b726-4fac-862a-235a5b0b3cf8",
+    "rol": "ADMIN",
+    "name": "Nicolas",
+    "last_name": "Selicki",
+    "email": "nicolas@gmail.com",
+    "avatar_img": "https://i.ibb.co/qW5Q4Lj/15.webp",
+    "identity_img": "https://i.ibb.co/17zs5XY/14.webp",
+    "calification": 2,
+    "aproved": true,
+    "ubicationId": "3507118e-7f85-4eab-8b89-a1f755ef45e0",
+    "createdAt": "2024-03-27T09:16:20.000Z",
+    "updatedAt": "2024-03-27T09:16:20.000Z"
+  },
+  {
+    "id": "b0c3c029-3f6b-47b7-a950-8ef979b6fc84",
+    "rol": "ADMIN",
+    "name": "Nicolas",
+    "last_name": "Selicki",
+    "email": "nico1991.6@gmail.com",
+    "avatar_img": "https://i.ibb.co/qW5Q4Lj/15.webp",
+    "identity_img": "https://i.ibb.co/17zs5XY/14.webp",
+    "calification": 2,
+    "aproved": true,
+    "ubicationId": "3507118e-7f85-4eab-8b89-a1f755ef45e0",
+    "createdAt": "2024-03-27T09:16:06.000Z",
+    "updatedAt": "2024-03-27T09:16:06.000Z"
+  },
+  {
+    "id": "d16c7d18-8d23-4912-a2f7-f556f325b806",
+    "rol": "ADMIN",
+    "name": "Nicolas",
+    "last_name": "Selicki",
+    "email": "nicolas.selicki@gmail.com",
+    "avatar_img": "https://i.ibb.co/qW5Q4Lj/15.webp",
+    "identity_img": "https://i.ibb.co/17zs5XY/14.webp",
+    "calification": 2,
+    "aproved": true,
+    "ubicationId": "3507118e-7f85-4eab-8b89-a1f755ef45e0",
+    "createdAt": "2024-03-27T09:16:14.000Z",
+    "updatedAt": "2024-03-27T09:16:14.000Z"
+  },
+  {
+    "id": "da4b01c5-d184-4f77-906f-45cc51ba7141",
+    "rol": "ADMIN",
+    "name": "Nicolas",
+    "last_name": "Selicki",
+    "email": "Nico.Sel@gmail.com",
+    "avatar_img": "https://i.ibb.co/qW5Q4Lj/15.webp",
+    "identity_img": "https://i.ibb.co/17zs5XY/14.webp",
+    "calification": 2,
+    "aproved": true,
+    "ubicationId": "7a5198b0-6203-460a-a2c7-46c8957e73d8",
+    "createdAt": "2024-03-27T09:17:07.000Z",
+    "updatedAt": "2024-03-27T09:17:07.000Z"
+  }
+]
