@@ -32,15 +32,12 @@ const User = db.define('users', {
   },
   avatar_img: {
     type: DataTypes.STRING,
-    allowNull: true
   },
   identity_img: {
     type: DataTypes.STRING,
-    allowNull: true
   },
   calification: {
     type: DataTypes.DOUBLE,
-    allowNull: false
   },
   aproved: {
     type: DataTypes.BOOLEAN,
@@ -48,7 +45,12 @@ const User = db.define('users', {
   },
   ubicationId: {
     type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
+  },
+  userContratated: {
+    type: DataTypes.UUID,
+  },
+  userClient: {
+    type: DataTypes.UUID,
   }
 });
 

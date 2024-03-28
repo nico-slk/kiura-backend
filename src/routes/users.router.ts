@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import { check } from 'express-validator';
+import { check, param } from 'express-validator';
 import {
+  contratedUser,
   createUser,
   deleteUser,
   getPaginatedUsers,
@@ -9,7 +10,7 @@ import {
   patchUser,
   testUser
 } from '../controllers/user.controller';
-import { emailExist, isUserExistByPk, validator } from '../middlewares/validator';
+import { emailExist, isUserExistByPk, isUserProfesional, validator } from '../middlewares/validator';
 import { validateJwt } from '../middlewares/validator-jsw';
 
 const router = Router();
@@ -62,5 +63,13 @@ router.delete('/:id', [
   check('id').custom(isUserExistByPk),
   validator
 ], deleteUser);
+
+router.patch('/conract/:profesionalId/:clientId', [
+  validateJwt,
+  param('profesionalId').custom(isUserExistByPk),
+  param('profesionalId').custom(isUserProfesional),
+  param('clientId').custom(isUserExistByPk),
+  validator
+], contratedUser);
 
 export default router;

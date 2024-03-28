@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import { UUIDVersion } from 'express-validator/src/options';
+import Comment from '../models/comments.model';
 import Ubication from '../models/ubication.models';
 import User from '../models/user.models';
 
@@ -32,7 +33,23 @@ export const isUserExistByPk = async (id: UUIDVersion) => {
 
 };
 
+export const isUserProfesional = async (idProfesional: UUIDVersion) => {
+  console.log(`profesional: ${idProfesional}`);
+
+  const user = await User.findByPk(idProfesional);
+
+  if (!user) {
+    throw new Error(`The user with id: ${idProfesional} doesn't exist`);
+  }
+
+  if (user.getDataValue('rol') !== "PROFESIONAL") {
+    throw new Error(`The user should be a profesional.`);
+  }
+
+};
+
 export const isUbicationExistByPk = async (id: UUIDVersion) => {
+  console.log(`profesional: ${id}`);
   const ubication = await Ubication.findByPk(id);
 
   if (!ubication) {
@@ -45,5 +62,13 @@ export const isUbicationExistByName = async (city: string) => {
 
   if (ubication) {
     throw new Error(`The ubication with name: ${city} already exist`);
+  }
+};
+
+export const isCommentExistByPk = async (param: string) => {
+  const comment = await Comment.findByPk(param);
+
+  if (!comment) {
+    throw new Error(`The comment with ID: ${param} doesn't exist`);
   }
 };
