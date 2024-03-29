@@ -1,6 +1,12 @@
 import { Router } from 'express';
 import { check, param } from 'express-validator';
-import { asignCategoryToProfesional, createCategory, getCategorieByPk, getCategories, testCategory } from '../controllers/category.controller';
+import {
+  asignCategoryToProfesional,
+  createCategory,
+  getCategorieByPk,
+  getCategories,
+  testCategory
+} from '../controllers/category.controller';
 import { isCategoryExistByPk, isUserExistByPk, validator } from '../middlewares/validator';
 
 const router = Router();

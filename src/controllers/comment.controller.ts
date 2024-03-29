@@ -87,7 +87,8 @@ export const createComment = async (req: Request, res: Response) => {
   try {
     // Build new user
     const comment = await Comment.build(body);
-    console.log(comment);
+    console.log(comment.dataValues);
+
 
     // // Save the new user
     await comment.save();

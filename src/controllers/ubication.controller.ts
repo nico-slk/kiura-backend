@@ -41,6 +41,22 @@ export const getUbicationByPk = async (req: Request, res: Response) => {
   }
 };
 
+export const getUbicationByName = async (req: Request, res: Response) => {
+  const { city } = req.params;
+  try {
+    const ubication = await Ubication.findOne({ where: { city } });
+
+    res.json({
+      msj: 'Ubication',
+      ubication
+    });
+
+  } catch (error) {
+
+    res.status(500).json({ error });
+  }
+};
+
 export const createUbication = async (req: Request, res: Response) => {
   const { body } = req;
   try {

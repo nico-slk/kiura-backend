@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import { check } from 'express-validator';
+import { check, param } from 'express-validator';
 import {
   createUbication,
   getUbication,
+  getUbicationByName,
   getUbicationByPk,
   testUbication,
 } from '../controllers/ubication.controller';
@@ -19,6 +20,11 @@ router.get('/:id', [
   check('id').custom(isUbicationExistByPk),
   validator
 ], getUbicationByPk);
+
+router.get('/name/:city', [
+  param('city', 'City name cannot be empty').not().isEmpty(),
+  validator
+], getUbicationByName);
 
 router.post('/', [
   check('city', 'city should not be empty').not().isEmpty(),

@@ -26,9 +26,16 @@ export const login = async (req: Request, res: Response): Promise<any> => {
     // Generate token
     let token = await jwtGenerator(user.getDataValue('id'));
 
+    const userToShow = {
+      id: user.dataValues.id,
+      rol: user.dataValues.rol,
+      name: user.dataValues.name,
+      email: user.dataValues.email
+    };
+
     res.status(200).json({
       msj: 'Usuario logueado',
-      user,
+      userToShow,
       token,
       tokenType: 'Bearer '
     });

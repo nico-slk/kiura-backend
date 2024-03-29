@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { check, param } from 'express-validator';
-import { deleteComment, getCommentByPk, getCommentByUserPk, getComments, patchComment, testComment } from '../controllers/comment.controller';
+import { createComment, deleteComment, getCommentByPk, getCommentByUserPk, getComments, patchComment, testComment } from '../controllers/comment.controller';
 import { isCommentExistByPk, isUserExistByPk, validator } from '../middlewares/validator';
 import { validateJwt } from '../middlewares/validator-jsw';
 
@@ -27,6 +27,15 @@ router.patch('/:commentId/:loggedUserId', [
   param('loggedUserId').custom(isUserExistByPk),
   validator,
 ], patchComment);
+
+router.post('/', [
+  validateJwt,
+  // check('comment', 'Comment should not be empty').not().isEmpty(),
+  // check('autorId', 'The user not exist.').isUUID(),
+  // check('userId', 'The user not exist.').isUUID,
+  // check('userId').custom(isUserExistByPk),
+  validator,
+], createComment);
 
 router.delete('/:commentId/:loggedUserId', [
   validateJwt,

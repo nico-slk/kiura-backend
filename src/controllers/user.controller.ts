@@ -101,10 +101,9 @@ export const createUser = async (req: Request, res: Response) => {
     user.setDataValue('password', userPasswordEncrypted);
 
     // Save the ubication ID
-    const ubication = await Ubication.findOne({ where: { city } });
+    const ubication = await Ubication.findOne({ where: { city: city } });
     if (ubication) user.setDataValue('ubicationId', ubication.dataValues.id);
     else throw new Error(`Ubication with name ${body.city} not exist.`);
-
 
     // Save the new user
     await user.save();

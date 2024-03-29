@@ -5,13 +5,13 @@ import Ubication from './ubication.models';
 import User from './user.models';
 
 //Ubicacion usuarios
-Ubication.belongsTo(User, {
-  foreignKey: "userId",
+User.belongsTo(Ubication, {
+  foreignKey: "ubicationId",
   targetKey: 'id',
 });
 
-User.hasOne(Ubication, {
-  foreignKey: "userId",
+Ubication.hasOne(User, {
+  foreignKey: "ubicationId",
   sourceKey: 'id',
 });
 //
