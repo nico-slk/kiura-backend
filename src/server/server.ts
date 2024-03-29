@@ -5,9 +5,13 @@ import swaggerUi from 'swagger-ui-express';
 
 import { db } from '../db/connection';
 import '../models/association';
+import '../models/category.model';
+import '../models/comments.model';
 import '../models/ubication.models';
 import '../models/user.models';
 import authRoute from '../routes/auth.router';
+import categoryRouter from '../routes/category.router';
+import commentRouter from '../routes/comments.router';
 import ubicationRouter from '../routes/ubication.router';
 import userRouter from '../routes/users.router.js';
 import swaggerJSON from '../swagger/swagger.json';
@@ -19,6 +23,8 @@ class Server {
   private apiPath = {
     ubication: '/api/ubication',
     user: '/api/user',
+    comment: '/api/comment',
+    category: '/api/category',
     doc: '/api/doc',
     login: '/api/login',
   };
@@ -43,6 +49,8 @@ class Server {
     this.app.use(this.apiPath.login, authRoute);
     this.app.use(this.apiPath.user, userRouter);
     this.app.use(this.apiPath.ubication, ubicationRouter);
+    this.app.use(this.apiPath.comment, commentRouter);
+    this.app.use(this.apiPath.category, categoryRouter);
     this.app.use(this.apiPath.doc, swaggerUi.serve, swaggerUi.setup(swaggerJSON));
   }
 

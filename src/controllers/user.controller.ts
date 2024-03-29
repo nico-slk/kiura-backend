@@ -133,3 +133,36 @@ export const deleteUser = async (req: Request, res: Response) => {
     res.status(500).json({ error });
   }
 };
+
+export const contratedUser = async (req: Request, res: Response) => {
+  const { clientId, profesionalId } = req.params;
+
+  try {
+    // Get the client and profesional
+    const user = await User.findByPk(clientId);
+    const contratedUser = await User.findByPk(profesionalId);
+
+    // Actualize the client/profesional ids
+    const { id: idClient, ...clientBody } = user?.dataValues;
+    const { id: idProfesional, ...profesionalBody } = contratedUser?.dataValues;
+
+    // Check if contrated user are the right rol
+    if (contratedUser?.dataValues.rol !== 'PROFESIONAL') {
+      throw new Error(`Ubication with name ${profesionalId} not exist.`);
+    }
+
+    // Update the Database
+    await user?.update({ ...clientBody, profesionalId: profesionalId }, { where: { id: clientId } });
+    await contratedUser?.update({ ...profesionalBody, cliendId: clientId }, { where: { id: profesionalId } });
+
+    res.json({
+      msg: 'User contracted',
+      id: profesionalBody
+    });
+
+  } catch (error) {
+    console.log('error aca');
+
+    res.status(500).json({ error });
+  }
+};
