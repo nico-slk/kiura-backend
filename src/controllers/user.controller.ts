@@ -153,7 +153,7 @@ export const contratedUser = async (req: Request, res: Response) => {
 
     // Update the Database
     await user?.update({ ...clientBody, profesionalId: profesionalId }, { where: { id: clientId } });
-    await contratedUser?.update({ ...profesionalBody, clientId: clientId }, { where: { id: profesionalId } });
+    await contratedUser?.update({ ...profesionalBody, cliendId: clientId }, { where: { id: profesionalId } });
 
     res.json({
       msg: 'User contracted',

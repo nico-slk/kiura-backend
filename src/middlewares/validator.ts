@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import { UUIDVersion } from 'express-validator/src/options';
+import Category from '../models/category.model';
 import Comment from '../models/comments.model';
 import Ubication from '../models/ubication.models';
 import User from '../models/user.models';
@@ -70,5 +71,13 @@ export const isCommentExistByPk = async (param: string) => {
 
   if (!comment) {
     throw new Error(`The comment with ID: ${param} doesn't exist`);
+  }
+};
+
+export const isCategoryExistByPk = async (param: string) => {
+  const category = await Category.findByPk(param);
+
+  if (!category) {
+    throw new Error(`The category with ID: ${param} doesn't exist`);
   }
 };

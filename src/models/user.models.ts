@@ -46,10 +46,13 @@ const User = db.define('users', {
   ubicationId: {
     type: DataTypes.UUID,
   },
-  userContratated: {
+  profesionalId: {
     type: DataTypes.UUID,
   },
-  userClient: {
+  cliendId: {
+    type: DataTypes.UUID,
+  },
+  profesionalCategory: {
     type: DataTypes.UUID,
   }
 });
